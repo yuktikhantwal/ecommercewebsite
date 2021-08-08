@@ -6,7 +6,7 @@
 <a href="/api/auth/login" class="btn btn-primary"> Login </a>
 
 <% } else { %>
-<h1>You are logged in!</h1>
+<h2>You are logged in!</h2>
 
 <% if(userType==="seller") { %>
 <h2>Seller</h2>
@@ -15,6 +15,7 @@
 
 <% } else { %>
 <h2>Buyer</h2>
+<a href="/api/buyer/list-of-sellers" class="btn btn-primary"> View Sellers </a>
 <% } %>
 
 <a href="/api/auth/logout" class="btn btn-primary"> Logout </a>

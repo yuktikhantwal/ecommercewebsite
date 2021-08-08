@@ -22,3 +22,15 @@ module.exports.add_product = async (req, res) => {
   await catalogue.save();
   res.redirect("/api/seller/catalogue");
 };
+
+module.exports.read_ = async (req, res) => {
+  const { id } = req.params;
+  const catalogue = await Catalogue.findOne({ seller: id })
+    .populate("products")
+    .populate("seller");
+  if (!catalogue) {
+    res.send("Seller has no catalogue yet!");
+  } else {
+    res.render("buyer/sellerCatalogue", { catalogue });
+  }
+};

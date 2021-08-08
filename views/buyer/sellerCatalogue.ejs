@@ -1,0 +1,26 @@
+<% layout('layout/boilerplate') %>
+<h1>Seller Catalogue</h1>
+<div style="width: 40%">
+  <form
+    action="/api/buyer/create-order/<%=catalogue.seller._id%>"
+    method="POST"
+  >
+    <ul class="list-group">
+      <% for(let product of catalogue.products) { %>
+      <li class="list-group-item">
+        <input
+          class="form-check-input me-1"
+          type="checkbox"
+          value="<%=product._id%>"
+          name="order_product_list"
+        />
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%=product.name%></div>
+          Rs. <%=product.price%>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+  </form>
+</div>

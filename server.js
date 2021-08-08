@@ -22,6 +22,7 @@ db.once("open", () => {
 
 const authRoutes = require("./routes/auth");
 const sellerRoutes = require("./routes/seller");
+const buyerRoutes = require("./routes/buyer");
 
 const app = express();
 
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/seller", sellerRoutes);
+app.use("/api/buyer", buyerRoutes);
 
 app.get("/", (req, res) => {
   res.render("home");

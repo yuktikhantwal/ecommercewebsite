@@ -14,9 +14,14 @@ module.exports.create = async (req, res) => {
   const order = new Order();
   order.seller = id;
   order.buyer = req.user._id;
-  for (let product_id of order_product_list) {
-    const product = await Product.findById(product_id);
+  if (typeof order_product_list === "string") {
+    const product = await Product.findById(order_product_list);
     order.products.push(product);
+  } else {
+    for (let product_id of order_product_list) {
+      const product = await Product.findById(product_id);
+      order.products.push(product);
+    }
   }
   await order.save();
   res.redirect("/api/buyer/list-of-sellers");
